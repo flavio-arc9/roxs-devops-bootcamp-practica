@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Bootcamp - Day 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .emoji {
+            font-size: 1.2em;
+        }
+        .stats {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        .api-info {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .success {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="emoji">🚀</span> ¡Bienvenido a DevOps Bootcamp!</h1>
+        
+        <div class="stats">
+            <h2><span class="emoji">🎯</span> Mi Primera Aplicación DevOps</h2>
+            <p>¡Felicitaciones! Has desplegado exitosamente tu primera aplicación en el mundo DevOps.</p>
+            <p class="success">✅ Aplicación ejecutándose correctamente</p>
+            <p class="success">✅ Contenedor Docker funcionando</p>
+            <p class="success">✅ Endpoints API listos</p>
+        </div>
+
+        <div class="api-info">
+            <h3><span class="emoji">🔗</span> Endpoints disponibles:</h3>
+            <p><strong>GET /</strong> - Esta página principal</p>
+            <p><strong>GET /health</strong> - Health check de la aplicación</p>
+            <p><strong>GET /api/stats</strong> - Estadísticas de la aplicación</p>
+            <p><strong>GET /api/error</strong> - Simular un error (para testing)</p>
+            <p><strong>GET /api/slow</strong> - Simular respuesta lenta</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/health" class="button">🏥 Health Check</a>
+            <a href="/api/stats" class="button">📊 Ver Stats</a>
+        </div>
+
+        <div class="stats">
+            <h3><span class="emoji">📚</span> Lo que estás aprendiendo:</h3>
+            <ul>
+                <li>Desarrollo de aplicaciones web con Node.js</li>
+                <li>Containerización con Docker</li>
+                <li>Automatización con scripts de bash</li>
+                <li>Monitoreo y observabilidad</li>
+                <li>Control de versiones con Git</li>
+                <li>Pipelines de CI/CD básicos</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <p><span class="emoji">🎉</span> <strong>¡Estás en el camino correcto hacia convertirte en un DevOps Engineer!</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // Pequeño script para hacer la página más interactiva
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 DevOps Bootcamp App loaded successfully!');
+            
+            // Añadir timestamp a la página
+            const timestamp = new Date().toLocaleString();
+            const footer = document.createElement('div');
+            footer.style.textAlign = 'center';
+            footer.style.marginTop = '20px';
+            footer.style.fontSize = '0.9em';
+            footer.style.opacity = '0.8';
+            footer.innerHTML = `<p>Página cargada: ${timestamp}</p>`;
+            document.querySelector('.container').appendChild(footer);
+        });
+    </script>
+</body>
+</html>
