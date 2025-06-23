@@ -38,7 +38,7 @@ devops-bootcamp-day1/
 
 ### Prerequisitos
 
-- Acceso a [Google Cloud Shell](https://ssh.cloud.google.com/cloudshell/editor)
+- Acceso a [Google Cloud Shell](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/roxsross/devops-bootcamp-day1.git&cloudshell_tutorial=tutorial.md&shellonly=true)
 - ¡Ganas de aprender DevOps!
 
 ### Instalación
