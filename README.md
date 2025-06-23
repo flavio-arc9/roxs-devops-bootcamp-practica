@@ -50,7 +50,7 @@ devops-bootcamp-day1/
 ## 🚀 Inicio Rápido
 
 ### Prerequisitos
-- Acceso a [![Abrir en Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/roxsross/roxs-devops-bootcamp-practica.git&cloudshell_tutorial=tutorial.md&shellonly=true)
+- Acceso a [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/roxsross/roxs-devops-bootcamp-practica.git&cloudshell_tutorial=TUTORIAL.md&shellonly=true)
 - ¡Ganas de aprender DevOps!
 
 ### Instalación

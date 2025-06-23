@@ -46,7 +46,7 @@ DevOps es como ser el **"traductor universal"** entre los desarrolladores que cr
 
 ### Paso 1: Acceder a Cloud Shell
 
-1. **Abre tu navegador** y ve a: [Google Cloud Shell](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/roxsross/roxs-devops-bootcamp-practica.git&cloudshell_tutorial=tutorial.md&shellonly=true)
+1. **Abre tu navegador** y ve a: [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/roxsross/roxs-devops-bootcamp-practica.git&cloudshell_tutorial=TUTORIAL.md&shellonly=true)
 
 2. **Autoriza el acceso** cuando Google te lo pida
    - Usa tu cuenta de Gmail personal
