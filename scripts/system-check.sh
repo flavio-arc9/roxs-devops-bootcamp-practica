@@ -76,7 +76,7 @@ echo "=========================================="
 echo "🔍 Probando conectividad..."
 
 # Test de conectividad local
-if curl -s http://localhost:3000/health > /dev/null 2>&1; then
+if curl -s http://localhost:4000/health > /dev/null 2>&1; then
   echo -e "${GREEN}✅ Aplicación local accesible${NC}"
 else
   echo -e "${YELLOW}⚠️  Aplicación local no responde${NC}"

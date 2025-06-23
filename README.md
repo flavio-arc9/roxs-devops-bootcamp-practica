@@ -1,5 +1,18 @@
 # 🚀 DevOps Bootcamp - Day 1 Practice
 
+![](https://media.licdn.com/dms/image/v2/D4D16AQF4ND-cC_uxZg/profile-displaybackgroundimage-shrink_350_1400/profile-displaybackgroundimage-shrink_350_1400/0/1731367727725?e=1753920000&v=beta&t=80SZ4IOx4V_VDcCBli7aFjYuMhzMos9SRFq8GnV8zc4)
+
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue?logo=docker)](https://docker.com)
+[![Node.js](https://img.shields.io/badge/Node.js-Worker-green?logo=node.js)](https://nodejs.org)
+[![Node.js](https://img.shields.io/badge/Node.js-Result-green?logo=node.js)](https://nodejs.org)
+[![Flask](https://img.shields.io/badge/Flask-Vote-lightgrey?logo=flask)](https://flask.palletsprojects.com/)
+[![Redis](https://img.shields.io/badge/Redis-Cache-red?logo=redis)](https://redis.io)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue?logo=postgresql)](https://postgresql.org)
+[![Prometheus](https://img.shields.io/badge/Prometheus-Monitoring-orange?logo=prometheus)](https://prometheus.io)
+[![Grafana](https://img.shields.io/badge/Grafana-Visualization-orange?logo=grafana)](https://grafana.com)
+
+
+
 ¡Bienvenido a tu primera experiencia práctica con DevOps! Este repositorio contiene una aplicación web completa diseñada para que aprendas los conceptos fundamentales de DevOps de manera práctica.
 
 ## 🎯 Objetivos de Aprendizaje
@@ -37,16 +50,15 @@ devops-bootcamp-day1/
 ## 🚀 Inicio Rápido
 
 ### Prerequisitos
-
-- Acceso a [Google Cloud Shell](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/roxsross/roxs-devops-bootcamp-practica.git&cloudshell_tutorial=tutorial.md&shellonly=true)
+- Acceso a [![Abrir en Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/roxsross/roxs-devops-bootcamp-practica.git&cloudshell_tutorial=tutorial.md&shellonly=true)
 - ¡Ganas de aprender DevOps!
 
 ### Instalación
 
 1. **Clona el repositorio:**
    ```bash
-   git clone https://github.com/roxsross/devops-bootcamp-day1.git
-   cd devops-bootcamp-day1
+   git clone https://github.com/roxsross/roxs-devops-bootcamp-practica.git
+   cd roxs-devops-bootcamp-practica
    ```
 
 2. **Instala dependencias:**
@@ -61,7 +73,7 @@ devops-bootcamp-day1/
 
 4. **Verifica que funciona:**
    ```bash
-   curl http://localhost:3000/health
+   curl http://localhost:4000/health
    ```
 
 ## 🐳 Uso con Docker
@@ -73,7 +85,7 @@ devops-bootcamp-day1/
 docker build -t mi-app-devops:v1.0 .
 
 # Ejecutar contenedor
-docker run -d -p 3000:3000 --name mi-app mi-app-devops:v1.0
+docker run -d -p 4000:4000 --name mi-app mi-app-devops:v1.0
 
 # Verificar logs
 docker logs mi-app
@@ -123,8 +135,8 @@ npm test
 ./scripts/test.sh
 
 # Tests de endpoints (con app corriendo)
-curl http://localhost:3000/health
-curl http://localhost:3000/api/stats
+curl http://localhost:4000/health
+curl http://localhost:4000/api/stats
 ```
 
 ## 🛠️ Scripts Disponibles
@@ -160,7 +172,7 @@ curl http://localhost:3000/api/stats
 ### Error: Puerto ya en uso
 ```bash
 # Encuentra el proceso usando el puerto
-lsof -i :3000
+lsof -i :4000
 
 # O mata todos los procesos Node.js
 pkill node
@@ -186,3 +198,29 @@ chmod +x scripts/*.sh
 **¡Feliz aprendizaje y bienvenido al mundo DevOps!** 🚀
 
 > *"El viaje de mil millas comienza con un solo paso."* - Lao Tzu
+
+Roadmap que recomiendo seguir [DevOps](https://roadmap.sh/devops)
+
+### 🎯 Objetivo final:
+
+Tener un **portfolio técnico** completo y práctico, demostrando tus conocimientos en cada área del ciclo de vida DevOps.
+
+---
+
+## 📄 Licencia
+
+Este proyecto está licenciado bajo MIT License - ver el archivo [LICENSE](LICENSE) para detalles.
+
+## 👨‍💻 Autor
+
+**roxsross** - Instructor DevOps y Cloud
+
+- 🐦 Twitter: [@roxsross](https://twitter.com/roxsross)
+- 🔗 LinkedIn: [roxsross](https://linkedin.com/in/roxsross)
+- ☕ Ko-fi [roxsross](https://ko-fi.com/roxsross)
+- ▶️ Youtube [295devops](https://www.youtube.com/@295devops)
+- 📧 Email: roxs@295devops.com
+
+---
+
+> 💡 Si querés sumar este desafío a tu portfolio o como parte de tu onboarding, ¡hacelo con orgullo! 💥

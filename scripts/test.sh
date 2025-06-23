@@ -13,7 +13,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 # Variables
-APP_URL="http://localhost:3000"
+APP_URL="http://localhost:4000"
 TESTS_PASSED=0
 TESTS_FAILED=0
 

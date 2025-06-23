@@ -16,7 +16,7 @@ NC='\033[0m' # No Color
 APP_NAME="mi-app-devops"
 VERSION="v1.0"
 CONTAINER_NAME="mi-app-prod"
-PORT=3000
+PORT=4000
 
 echo -e "${BLUE}📦 Paso 1: Construyendo imagen Docker...${NC}"
 docker build -t ${APP_NAME}:${VERSION} .

@@ -11,7 +11,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 # Variables
-APP_URL="http://localhost:3000"
+APP_URL="http://localhost:4000"
 CONTAINER_NAME="mi-app-prod"
 MONITOR_INTERVAL=5
 

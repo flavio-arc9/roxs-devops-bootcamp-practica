@@ -46,7 +46,7 @@ DevOps es como ser el **"traductor universal"** entre los desarrolladores que cr
 
 ### Paso 1: Acceder a Cloud Shell
 
-1. **Abre tu navegador** y ve a: [Google Cloud Shell](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/roxsross/devops-bootcamp-day1.git&cloudshell_tutorial=tutorial.md&shellonly=true)
+1. **Abre tu navegador** y ve a: [Google Cloud Shell](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/roxsross/roxs-devops-bootcamp-practica.git&cloudshell_tutorial=tutorial.md&shellonly=true)
 
 2. **Autoriza el acceso** cuando Google te lo pida
    - Usa tu cuenta de Gmail personal
@@ -139,19 +139,19 @@ npm start
 # Abre una nueva terminal: Ctrl+Shift+T o usa el botón "+"
 
 # Prueba la página principal
-curl http://localhost:3000
+curl http://localhost:4000
 
 # Prueba el health check (muy importante en DevOps)
-curl http://localhost:3000/health
+curl http://localhost:4000/health
 
 # Ve las estadísticas de tu app
-curl http://localhost:3000/api/stats
+curl http://localhost:4000/api/stats
 
 # Simula un error (para ver qué pasa)
-curl http://localhost:3000/api/error
+curl http://localhost:4000/api/error
 
 # Prueba una respuesta lenta
-curl http://localhost:3000/api/slow
+curl http://localhost:4000/api/slow
 ```
 
 ### Paso 7: Haz tu primera modificación
@@ -171,7 +171,7 @@ npm start
 
 ```bash
 # En la otra terminal, verifica tu cambio
-curl http://localhost:3000 | grep "Hola"
+curl http://localhost:4000 | grep "Hola"
 ```
 
 **🎉 ¡Felicitaciones!** Acabas de hacer tu primera modificación y despliegue manual.
@@ -206,7 +206,7 @@ WORKDIR /app                 # Directorio de trabajo dentro del contenedor
 COPY package*.json ./        # Copia archivos de dependencias
 RUN npm ci --only=production # Instala dependencias de producción
 COPY . .                     # Copia el resto del código
-EXPOSE 3000                  # El contenedor escucha en puerto 3000
+EXPOSE 4000                  # El contenedor escucha en puerto 4000
 CMD ["npm", "start"]         # Comando que ejecuta cuando inicia
 ```
 
@@ -230,13 +230,13 @@ docker images mi-app-devops
 ```bash
 # Ejecuta el contenedor
 echo "🚀 Ejecutando contenedor..."
-docker run -d -p 3000:3000 --name mi-app mi-app-devops:v1.0
+docker run -d -p 4000:4000 --name mi-app mi-app-devops:v1.0
 
 # Verifica que esté corriendo
 docker ps
 
 # Prueba que funciona
-curl http://localhost:3000/health
+curl http://localhost:4000/health
 ```
 
 ### Paso 11: Gestiona tu contenedor como un pro
@@ -267,13 +267,13 @@ docker inspect mi-app --format='{{.State.Status}}'
 docker stop mi-app
 
 # Verifica que no responde
-curl http://localhost:3000/health || echo "💥 App no responde"
+curl http://localhost:4000/health || echo "💥 App no responde"
 
 # ¡Arréglalo rápido! (esto es un rollback)
 docker start mi-app
 
 # Verifica que ya funciona
-curl http://localhost:3000/health && echo "✅ App restaurada"
+curl http://localhost:4000/health && echo "✅ App restaurada"
 ```
 
 **💪 ¡Acabas de hacer tu primer incident response!**
@@ -353,7 +353,7 @@ docker build -t mi-app-devops:v2.0-buggy .
 # Despliega la versión con bug
 docker stop mi-app-prod 2>/dev/null || true
 docker rm mi-app-prod 2>/dev/null || true
-docker run -d -p 3000:3000 --name mi-app-prod mi-app-devops:v2.0-buggy
+docker run -d -p 4000:4000 --name mi-app-prod mi-app-devops:v2.0-buggy
 
 # ¡Houston, tenemos un problema! Verifica el bug
 echo "🐛 Checking for bug..."
@@ -363,10 +363,10 @@ docker logs mi-app-prod | grep "Bug introducido"
 echo "🔄 Ejecutando rollback..."
 docker stop mi-app-prod
 docker rm mi-app-prod
-docker run -d -p 3000:3000 --name mi-app-prod mi-app-devops:v1.0
+docker run -d -p 4000:4000 --name mi-app-prod mi-app-devops:v1.0
 
 echo "✅ Rollback completado - Crisis evitada!"
-curl http://localhost:3000/health
+curl http://localhost:4000/health
 ```
 
 **💪 ¡Acabas de manejar una crisis como un DevOps senior!**
@@ -401,9 +401,9 @@ echo "Monitor corriendo con PID: $MONITOR_PID"
 echo "🚦 Generando tráfico de prueba..."
 
 for i in {1..20}; do
-  curl -s http://localhost:3000 > /dev/null
-  curl -s http://localhost:3000/api/stats > /dev/null
-  curl -s http://localhost:3000/health > /dev/null
+  curl -s http://localhost:4000 > /dev/null
+  curl -s http://localhost:4000/api/stats > /dev/null
+  curl -s http://localhost:4000/health > /dev/null
   echo "Request $i enviado"
   sleep 1
 done
@@ -415,18 +415,18 @@ done
 # Simula algunos errores
 echo "🚨 Simulando errores..."
 for i in {1..5}; do
-  curl -s http://localhost:3000/api/error > /dev/null
+  curl -s http://localhost:4000/api/error > /dev/null
   echo "Error $i simulado"
 done
 
 # Simula respuestas lentas
 echo "🐌 Simulando respuestas lentas..."
-curl -s http://localhost:3000/api/slow > /dev/null &
-curl -s http://localhost:3000/api/slow > /dev/null &
+curl -s http://localhost:4000/api/slow > /dev/null &
+curl -s http://localhost:4000/api/slow > /dev/null &
 
 # Ve las métricas actuales
 echo "📈 Métricas actuales:"
-curl -s http://localhost:3000/api/stats | python3 -m json.tool
+curl -s http://localhost:4000/api/stats | python3 -m json.tool
 ```
 
 ### Paso 20: Analiza logs como un detective
@@ -622,13 +622,13 @@ echo "🏭 Iniciando pipeline completo de CI/CD..."
 echo "🔍 Verificando deployment final..."
 
 # Health check
-curl http://localhost:3000/health | python3 -m json.tool
+curl http://localhost:4000/health | python3 -m json.tool
 
 # Nuevo endpoint que creaste
-curl http://localhost:3000/api/version | python3 -m json.tool
+curl http://localhost:4000/api/version | python3 -m json.tool
 
 # Stats de la aplicación
-curl http://localhost:3000/api/stats | python3 -m json.tool
+curl http://localhost:4000/api/stats | python3 -m json.tool
 
 # Ve el estado de todos tus contenedores
 echo "🐳 Estado final de contenedores:"

@@ -76,7 +76,7 @@ docker rm mi-app-staging 2>/dev/null || true
 
 docker run -d \
   --name mi-app-staging \
-  -p 3001:3000 \
+  -p 3001:4000 \
   mi-app-devops:pipeline-${PIPELINE_ID}
 
 echo "⏳ Esperando que staging esté listo..."
@@ -116,14 +116,14 @@ docker rm mi-app-prod 2>/dev/null || true
 docker run -d \
   --name mi-app-prod \
   --restart unless-stopped \
-  -p 3000:3000 \
+  -p 4000:4000 \
   mi-app-devops:pipeline-${PIPELINE_ID}
 
 echo "⏳ Verificando deployment en producción..."
 sleep 5
 
 # Health checks en producción
-PROD_URL="http://localhost:3000"
+PROD_URL="http://localhost:4000"
 for i in {1..5}; do
   if curl -f -s ${PROD_URL}/health > /dev/null; then
     echo -e "${GREEN}✅ Producción saludable${NC}"
