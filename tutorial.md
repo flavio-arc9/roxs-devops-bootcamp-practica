@@ -61,12 +61,15 @@ DevOps es como ser el **"traductor universal"** entre los desarrolladores que cr
 
 ```bash
 # ¿Dónde estoy?
+
 pwd
 
 # ¿Qué hay aquí?
+
 ls -la
 
 # Explora la estructura del proyecto
+
 tree . || find . -type f
 ```
 
@@ -106,13 +109,17 @@ nproc
 
 ```bash
 # ¿Qué tipo de aplicación es?
+
 cat package.json
 
 # Ve el código principal
+
 cat app.js
 
 # Revisa la página web
+
 cat public/index.html
+
 ```
 
 **🎯 Desafío rápido:** Sin ejecutar nada aún, ¿puedes adivinar qué hace esta aplicación? 🤔
@@ -121,13 +128,17 @@ cat public/index.html
 
 ```bash
 # Instala las dependencias (como descargar las librerías que necesita)
+
 npm install
 
 # ¿Qué se instaló?
+
 ls node_modules/ | head -5
 
 # Ejecuta la aplicación
+
 echo "🚀 Iniciando aplicación..."
+
 npm start
 ```
 
@@ -139,18 +150,23 @@ npm start
 # Abre una nueva terminal: Ctrl+Shift+T o usa el botón "+"
 
 # Prueba la página principal
+
 curl http://localhost:4000
 
 # Prueba el health check (muy importante en DevOps)
+
 curl http://localhost:4000/health
 
 # Ve las estadísticas de tu app
+
 curl http://localhost:4000/api/stats
 
 # Simula un error (para ver qué pasa)
+
 curl http://localhost:4000/api/error
 
 # Prueba una respuesta lenta
+
 curl http://localhost:4000/api/slow
 ```
 
@@ -160,17 +176,21 @@ curl http://localhost:4000/api/slow
 # En la terminal donde NO está corriendo la app (Ctrl+C para detenerla si es necesario)
 
 # Modifica el mensaje de bienvenida
+
 sed -i 's/¡Bienvenido a DevOps Bootcamp!/¡Hola [TU NOMBRE], bienvenido a DevOps!/' public/index.html
 
 # Verifica el cambio
+
 grep "Hola" public/index.html
 
 # Reinicia la aplicación
+
 npm start
 ```
 
 ```bash
 # En la otra terminal, verifica tu cambio
+
 curl http://localhost:4000 | grep "Hola"
 ```
 
@@ -196,6 +216,7 @@ curl http://localhost:4000 | grep "Hola"
 
 ```bash
 # Ve cómo se "empaqueta" tu aplicación
+
 cat Dockerfile
 ```
 
@@ -216,10 +237,13 @@ CMD ["npm", "start"]         # Comando que ejecuta cuando inicia
 # Detén la aplicación si sigue corriendo (Ctrl+C)
 
 # Construye la imagen (esto puede tardar un minuto)
+
 echo "🏗️ Construyendo imagen Docker..."
+
 docker build -t mi-app-devops:v1.0 .
 
 # Ve tu imagen recién creada
+
 docker images mi-app-devops
 ```
 
@@ -229,7 +253,9 @@ docker images mi-app-devops
 
 ```bash
 # Ejecuta el contenedor
+
 echo "🚀 Ejecutando contenedor..."
+
 docker run -d -p 4000:4000 --name mi-app mi-app-devops:v1.0
 
 # Verifica que esté corriendo
@@ -244,19 +270,23 @@ curl http://localhost:4000/health
 ```bash
 # Ve los logs de tu aplicación
 echo "📋 Logs de la aplicación:"
+
 docker logs mi-app
 
 # Accede DENTRO del contenedor (como SSH)
 echo "🔍 Entrando al contenedor..."
+
 docker exec -it mi-app sh
 
 # Dentro del contenedor, explora:
+
 ps aux              # ¿Qué procesos corren?
 ls -la             # ¿Qué archivos hay?
 cat /etc/os-release # ¿Qué OS tiene?
 exit               # Sal del contenedor
 
 # Información del contenedor
+
 docker inspect mi-app --format='{{.State.Status}}'
 ```
 
@@ -264,15 +294,19 @@ docker inspect mi-app --format='{{.State.Status}}'
 
 ```bash
 # "Ups, algo se rompió" - detén el contenedor
+
 docker stop mi-app
 
 # Verifica que no responde
+
 curl http://localhost:4000/health || echo "💥 App no responde"
 
 # ¡Arréglalo rápido! (esto es un rollback)
+
 docker start mi-app
 
 # Verifica que ya funciona
+
 curl http://localhost:4000/health && echo "✅ App restaurada"
 ```
 
@@ -300,9 +334,11 @@ curl http://localhost:4000/health && echo "✅ App restaurada"
 
 ```bash
 # Ve qué scripts tienes disponibles
+
 ls scripts/
 
 # Inspecciona cada script
+
 echo "🔍 Script de deployment:"
 head -20 scripts/deploy.sh
 
@@ -317,9 +353,11 @@ head -10 scripts/cleanup.sh
 
 ```bash
 # Dale permisos de ejecución a todos los scripts
+
 chmod +x scripts/*.sh
 
 # Verifica los permisos
+
 ls -la scripts/
 ```
 
@@ -327,14 +365,17 @@ ls -la scripts/
 
 ```bash
 # Primero, limpia el entorno anterior
+
 docker stop mi-app 2>/dev/null || true
 docker rm mi-app 2>/dev/null || true
 
 # Ejecuta el script de testing
+
 echo "🧪 Ejecutando tests..."
 ./scripts/test.sh
 
 # Si los tests pasan, ejecuta el deployment
+
 echo "🚀 Ejecutando deployment automatizado..."
 ./scripts/deploy.sh
 ```
@@ -345,21 +386,26 @@ echo "🚀 Ejecutando deployment automatizado..."
 
 ```bash
 # Introduce un "bug" intencionalmente
+
 echo 'console.log("🐛 Bug introducido para simular problema");' >> app.js
 
 # Construye nueva versión con bug
+
 docker build -t mi-app-devops:v2.0-buggy .
 
 # Despliega la versión con bug
+
 docker stop mi-app-prod 2>/dev/null || true
 docker rm mi-app-prod 2>/dev/null || true
 docker run -d -p 4000:4000 --name mi-app-prod mi-app-devops:v2.0-buggy
 
 # ¡Houston, tenemos un problema! Verifica el bug
+
 echo "🐛 Checking for bug..."
 docker logs mi-app-prod | grep "Bug introducido"
 
 # ¡Rollback inmediato!
+
 echo "🔄 Ejecutando rollback..."
 docker stop mi-app-prod
 docker rm mi-app-prod
@@ -386,18 +432,23 @@ Si tu aplicación fuera un paciente en el hospital, el monitoreo sería:
 
 ```bash
 # Inicia el script de monitoreo en background
+
 echo "📊 Iniciando monitoreo..."
+
 ./scripts/monitor.sh &
 
 # Nota el Process ID
 MONITOR_PID=$!
+
 echo "Monitor corriendo con PID: $MONITOR_PID"
+
 ```
 
 ### Paso 18: Genera tráfico para ver métricas
 
 ```bash
 # En otra terminal, genera tráfico
+
 echo "🚦 Generando tráfico de prueba..."
 
 for i in {1..20}; do
@@ -413,18 +464,22 @@ done
 
 ```bash
 # Simula algunos errores
+
 echo "🚨 Simulando errores..."
+
 for i in {1..5}; do
   curl -s http://localhost:4000/api/error > /dev/null
   echo "Error $i simulado"
 done
 
 # Simula respuestas lentas
+
 echo "🐌 Simulando respuestas lentas..."
 curl -s http://localhost:4000/api/slow > /dev/null &
 curl -s http://localhost:4000/api/slow > /dev/null &
 
 # Ve las métricas actuales
+
 echo "📈 Métricas actuales:"
 curl -s http://localhost:4000/api/stats | python3 -m json.tool
 ```
@@ -433,18 +488,25 @@ curl -s http://localhost:4000/api/stats | python3 -m json.tool
 
 ```bash
 # Detén el monitor
+
 kill $MONITOR_PID 2>/dev/null || true
 
 # Analiza los logs de la aplicación
+
 echo "🔍 Analizando logs..."
+
 docker logs mi-app-prod --tail 30
 
 # Cuenta errores
+
 echo "❌ Total de errores detectados:"
+
 docker logs mi-app-prod | grep -c "ERROR"
 
 # Ve patrones de acceso
+
 echo "📊 Patrones de acceso:"
+
 docker logs mi-app-prod | grep "GET /" | wc -l | xargs echo "Total requests GET /:"
 docker logs mi-app-prod | grep "/health" | wc -l | xargs echo "Health checks:"
 docker logs mi-app-prod | grep "/api/stats" | wc -l | xargs echo "Stats requests:"
@@ -454,7 +516,9 @@ docker logs mi-app-prod | grep "/api/stats" | wc -l | xargs echo "Stats requests
 
 ```bash
 # Ve el uso de recursos del contenedor
+
 echo "🐳 Recursos del contenedor:"
+
 docker stats mi-app-prod --no-stream
 
 # Ejecuta un chequeo completo del sistema
@@ -469,10 +533,12 @@ docker stats mi-app-prod --no-stream
 
 ```bash
 # Configura Git con tu información
+
 git config --global user.name "Tu Nombre Aquí"
 git config --global user.email "tu.email@ejemplo.com"
 
 # Ve la configuración
+
 git config --list | grep user
 ```
 
@@ -486,6 +552,7 @@ git branch
 git checkout -b feature/mi-primera-mejora
 
 # Haz un cambio significativo
+
 echo "
 ## 🎯 Mi Primera Mejora DevOps
 
@@ -504,6 +571,7 @@ echo "
 " >> MI_EXPERIENCIA.md
 
 # Añade el archivo al control de versiones
+
 git add MI_EXPERIENCIA.md
 
 # Haz commit de tus cambios
@@ -602,8 +670,11 @@ node -c app.js && echo "✅ Sintaxis OK"
 docker build -t mi-app-devops:v1.1 .
 
 # Ejecuta el pipeline completo
+
 echo "🏭 Iniciando pipeline completo de CI/CD..."
+
 ./scripts/full-pipeline.sh
+
 ```
 
 **📋 Lo que está pasando detrás de cámaras:**
@@ -614,97 +685,6 @@ echo "🏭 Iniciando pipeline completo de CI/CD..."
 5. **Smoke Tests** - Verificaciones básicas en staging
 6. **Production Deploy** - Si todo está bien, va a producción
 7. **Health Monitoring** - Vigila que todo funcione
-
-### Paso 26: Verifica el resultado final
-
-```bash
-# Verifica que todo esté funcionando en producción
-echo "🔍 Verificando deployment final..."
-
-# Health check
-curl http://localhost:4000/health | python3 -m json.tool
-
-# Nuevo endpoint que creaste
-curl http://localhost:4000/api/version | python3 -m json.tool
-
-# Stats de la aplicación
-curl http://localhost:4000/api/stats | python3 -m json.tool
-
-# Ve el estado de todos tus contenedores
-echo "🐳 Estado final de contenedores:"
-docker ps
-
-# Ve todas las imágenes que creaste
-echo "🖼️ Imágenes Docker creadas:"
-docker images | grep mi-app-devops
-```
-
-### Paso 27: Documentar la experiencia
-
-```bash
-# Crea un reporte final de tu experiencia
-echo "# 🎉 Mi Primera Experiencia DevOps - COMPLETADA
-
-## 📊 Estadísticas de la sesión
-- **Inicio:** $(git log --reverse --format="%ai" | head -1)
-- **Fin:** $(date)
-- **Commits realizados:** $(git rev-list --count HEAD)
-- **Contenedores creados:** $(docker ps -a | grep mi-app | wc -l)
-- **Imágenes generadas:** $(docker images | grep mi-app-devops | wc -l)
-
-## ✅ Habilidades adquiridas
-- [x] Desarrollo de aplicaciones web (Node.js + Express)
-- [x] Containerización con Docker
-- [x] Automatización con Bash scripts
-- [x] Control de versiones con Git
-- [x] Monitoreo y observabilidad
-- [x] Pipeline de CI/CD
-- [x] Incident response y rollback
-- [x] Trabajo colaborativo con branches
-
-## 🎯 Conceptos DevOps experimentados
-- **Infrastructure as Code** (Dockerfile)
-- **Automation** (Scripts de deployment)
-- **Monitoring** (Logs y métricas)
-- **Version Control** (Git workflows)
-- **Continuous Integration** (Automated testing)
-- **Continuous Deployment** (Automated releases)
-- **Incident Management** (Rollbacks)
-
-## 🚀 Próximos pasos en mi carrera DevOps
-1. **Semana 2:** Kubernetes y orquestación
-2. **Semana 3:** Infrastructure as Code con Terraform
-3. **Semana 4:** CI/CD avanzado con GitHub Actions
-4. **Semana 5:** Monitoring con Prometheus y Grafana
-5. **Semana 6:** Security y compliance
-6. **Semana 7:** Cloud platforms (AWS/GCP/Azure)
-7. **Semana 8:** Proyecto final integrador
-
-## 💡 Reflexiones personales
-- Lo que más me gustó: _______________
-- Lo que me resultó más difícil: _______________
-- Mi momento 'aha!': _______________
-- Herramienta que más me emocionó: _______________
-
-## 🎖️ Certificación personal
-Yo, $(git config user.name), completé exitosamente mi primera experiencia DevOps el $(date).
-Estoy listo para continuar mi journey hacia convertirme en un DevOps Engineer.
-
-**Firma digital:** $(git log -1 --format="%H" | cut -c1-8)
-" > MI_CERTIFICACION_DEVOPS.md
-
-# Añádelo al repositorio
-git add MI_CERTIFICACION_DEVOPS.md
-git commit -m "docs: añadir certificación personal de finalización
-
-- Documentar estadísticas de la sesión de aprendizaje
-- Registrar habilidades adquiridas y conceptos experimentados
-- Establecer roadmap personal para próximas semanas
-- Incluir reflexiones y momento de certificación personal"
-
-# Ve tu certificación
-cat MI_CERTIFICACION_DEVOPS.md
-```
 
 ---
 

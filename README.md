@@ -150,48 +150,6 @@ curl http://localhost:4000/api/stats
 | `./scripts/system-check.sh` | Verificación del sistema |
 | `./scripts/full-pipeline.sh` | Pipeline completo CI/CD |
 
-## 🎓 Ejercicios de Aprendizaje
-
-### Nivel Principiante
-1. Modifica el mensaje de bienvenida en `public/index.html`
-2. Añade un nuevo endpoint `/api/version` que devuelva la versión
-3. Cambia el puerto de la aplicación a 8080
-
-### Nivel Intermedio
-4. Añade variables de entorno para configuración
-5. Implementa logging más detallado
-6. Crea un endpoint `/api/team` con información de tu equipo
-
-### Nivel Avanzado
-7. Añade persistencia con un archivo JSON
-8. Implementa rate limiting básico
-9. Crea tests más robustos con assertions
-
-## 🐛 Troubleshooting
-
-### Error: Puerto ya en uso
-```bash
-# Encuentra el proceso usando el puerto
-lsof -i :4000
-
-# O mata todos los procesos Node.js
-pkill node
-```
-
-### Error: Docker no responde
-```bash
-# Reinicia Docker (en Cloud Shell)
-sudo service docker restart
-
-# O limpia contenedores
-docker system prune -f
-```
-
-### Error: Permisos en scripts
-```bash
-# Da permisos de ejecución
-chmod +x scripts/*.sh
-```
 
 ---
 
@@ -201,15 +159,6 @@ chmod +x scripts/*.sh
 
 Roadmap que recomiendo seguir [DevOps](https://roadmap.sh/devops)
 
-### 🎯 Objetivo final:
-
-Tener un **portfolio técnico** completo y práctico, demostrando tus conocimientos en cada área del ciclo de vida DevOps.
-
----
-
-## 📄 Licencia
-
-Este proyecto está licenciado bajo MIT License - ver el archivo [LICENSE](LICENSE) para detalles.
 
 ## 👨‍💻 Autor
 
@@ -221,6 +170,4 @@ Este proyecto está licenciado bajo MIT License - ver el archivo [LICENSE](LICEN
 - ▶️ Youtube [295devops](https://www.youtube.com/@295devops)
 - 📧 Email: roxs@295devops.com
 
----
 
-> 💡 Si querés sumar este desafío a tu portfolio o como parte de tu onboarding, ¡hacelo con orgullo! 💥
