@@ -139,6 +139,8 @@ ls node_modules/ | head -5
 
 echo "🚀 Iniciando aplicación..."
 
+# Iniciando aplicación
+
 npm start
 ```
 
@@ -168,6 +170,7 @@ curl http://localhost:4000/api/error
 # Prueba una respuesta lenta
 
 curl http://localhost:4000/api/slow
+
 ```
 
 ### Paso 7: Haz tu primera modificación
@@ -186,6 +189,7 @@ grep "Hola" public/index.html
 # Reinicia la aplicación
 
 npm start
+
 ```
 
 ```bash
