@@ -146,6 +146,14 @@ npm start
 
 **¡Tu aplicación ya está corriendo!** 🎉
 
+## 🌐 Abrí tu aplicación
+
+🔎 En la parte superior derecha del Cloud Shell hacé clic en el botón
+**"Vista previa del puerto 8080 y Cambiala por puerto 4000"** (ícono 🔳↗️).
+
+Tu sitio se abrirá en una nueva pestaña del navegador.
+
+
 ### Paso 6: Prueba tu aplicación (En una nueva terminal)
 
 ```bash
