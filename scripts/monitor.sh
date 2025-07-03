@@ -60,8 +60,8 @@ get_container_stats() {
 # Función para verificar logs de errores
 check_error_logs() {
   if docker ps | grep -q ${CONTAINER_NAME}; then
-    local error_count=$(docker logs ${CONTAINER_NAME} --since=30s 2>/dev/null | grep -c "ERROR" || echo "0")
-    if [ "$error_count" -gt 0 ]; then
+    local error_count=$(docker logs ${CONTAINER_NAME} --since=30s 2>/dev/null | grep -c "ERROR" 2>/dev/null || echo "0")
+    if [ "$error_count" > 0 ]; then
       echo -e "${RED}🚨 [$(timestamp)] Se detectaron $error_count errores en los últimos 30s${NC}"
       docker logs ${CONTAINER_NAME} --since=30s 2>/dev/null | grep "ERROR" | tail -3
     fi
