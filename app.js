@@ -75,3 +75,12 @@ app.listen(PORT, () => {
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
   console.log(`📈 Stats: http://localhost:${PORT}/api/stats`);
 });// Parche de seguridad aplicado Fri Jul  4 11:28:45 -05 2025
+
+app.get('/api/version', (req, res) => {
+  res.json({
+    version: '1.1.0',
+    buildDate: 'Fri Jul  4 11:29:02 -05 2025',
+    author: 'Tu Nombre',
+    environment: process.env.NODE_ENV || 'development'
+  });
+});
