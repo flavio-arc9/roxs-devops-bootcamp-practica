@@ -84,3 +84,25 @@ app.get('/api/version', (req, res) => {
     environment: process.env.NODE_ENV || 'development'
   });
 });
+
+app.get('/api/team', (req, res) => {
+  res.json({
+    teamName: "Tu Equipo DevOps",
+    members: ["Tu Nombre", "Compañero 1", "Compañero 2"],
+    motto: "Deploy fast, break nothing!",
+    established: new Date().toISOString()
+  });
+});
+const fs = require('fs');
+   
+   app.get('/health/advanced', (req, res) => {
+     // Simula check de DB
+     const dbStatus = fs.existsSync('./data.json') ? 'connected' : 'disconnected';
+     
+     res.json({
+       status: 'OK',
+       database: dbStatus,
+       uptime: Date.now() - startTime,
+       version: '1.2.0'
+     });
+   });
