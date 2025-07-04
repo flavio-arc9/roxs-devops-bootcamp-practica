@@ -27,7 +27,7 @@ echo -e "${BLUE}📋 STAGE 1: CODE QUALITY & TESTING${NC}"
 echo "-------------------------------------------"
 
 echo "🧪 Ejecutando tests unitarios..."
-if ! ./scripts/test.sh; then
+if !./scripts/test.sh; then
   echo -e "${RED}❌ Tests fallaron. Pipeline abortado.${NC}"
   exit 1
 fi
